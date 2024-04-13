@@ -3,9 +3,7 @@ import Users from "../models/Users.js"
 class UserController {
   async usersRegister(req, res, next) {
     const { username, password, email } = req.body
-    let status = 200
-    let message = ""
-
+    
     const existingUser = await Users.findOne({
       $or: [{ username }, { email }]
     })
