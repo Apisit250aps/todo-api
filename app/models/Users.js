@@ -36,7 +36,9 @@ const UserSchema = new Schema({
 const User = model("users", UserSchema)
 
 export default {
-  create_user(username, password, email) {
+  create_user(data = {}) {
+    const { username , email, password } = data
+    
     const passwordHashed = hashPassword(password)
     return new User({
       email: email,

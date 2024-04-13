@@ -4,6 +4,7 @@
 ใน Javascript มีหลายวิธีในการ export modules ขึ้นอยู่กับว่าต้องการ export อะไร และต้องการใช้งานอย่างไร
 
 วิธีหลักๆ ในการ export module Javascript มีดังนี้:
+
 1. Export Named:
 
 ใช้คำสั่ง `export` ตามด้วยชื่อตัวแปร ฟังก์ชัน หรือ class ที่ต้องการ export

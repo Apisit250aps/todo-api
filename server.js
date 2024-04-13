@@ -5,13 +5,14 @@ import cookieSession from "cookie-session"
 import morgan from "morgan"
 import { connect } from "mongoose"
 
-import { port, secret, db_url } from "./app.config.js"
-import auth from "./app/routes/Auth.js";
+import appConfig from "./app.config.js"
+
+import auth from "./app/routes/Auth.js"
 
 const app = express()
 const upload = multer()
 
-// request logs 
+// request logs
 app.use(
   morgan(":method :url  :status :response-time ms - :res[content-length]")
 )
@@ -25,11 +26,10 @@ app.use(
   cookieSession({
     // session
     // name: "session",
-    keys: secret,
+    keys: appConfig.secret,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }, // Set to true for https
-
+    cookie: { secure: false } // Set to true for https
   })
 )
 
@@ -40,12 +40,16 @@ app.use(upload.array())
 app.get("/", (req, res) => {
   res.send("OK")
 })
-app.use('/auth', auth)
+app.use("/auth", auth)
 
 // database
-await connect(db_url).then(()=>{ console.log('mongodb connected!') }).catch(err=>console.log(err))
+connect(appConfig.db_url())
+  .then(() => {
+    console.log("mongodb connected!")
+  })
+  .catch(err => console.log(err))
 
 // server listening
-app.listen(port, () => {
-  console.log(`Server listen on http://127.0.0.1:${port}/`)
+app.listen(appConfig.port, () => {
+  console.log(`Server listen on http://127.0.0.1:${appConfig.port}/`)
 })
