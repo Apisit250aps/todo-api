@@ -1,11 +1,11 @@
 import userModel from "../models/users.model.js"
 
 export default {
-  async usersRegister(req, res, next) {
+  async usersRegister(req, res) {
     const { username, password, email } = req.body
 
     const existingUser = await userModel.findOne({
-      $or: [{ username }, { email }],
+      $or: [{ username }, { email }]
     })
 
     if (existingUser) {
@@ -17,6 +17,8 @@ export default {
     }
 
     await userModel.create_user({ username, password, email })
+
     res.status(201).json({ message: "Registration successful" })
-  },
+    
+  }
 }

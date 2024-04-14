@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose"
-import { hashPassword } from "../helpers/password.js"
+import passwordHelper from "../helpers/password.helper.js"
 
 const UserSchema = new Schema({
   username: {
@@ -38,8 +38,8 @@ const User = model("users", UserSchema)
 export default {
   create_user(data = {}) {
     const { username, email, password } = data
-    const passwordHashed = hashPassword(password)
-
+    const passwordHashed = passwordHelper.Hashed(password)
+    console.log(passwordHashed)
     return new User({
       email: email,
       username: username,
@@ -48,7 +48,7 @@ export default {
   },
   create_staff(data = {}) {
     const { email, username, password } = data
-    const passwordHashed = hashPassword(password)
+    const passwordHashed = passwordHelper.Hashed(password)
 
     return new User({
       email: email,
@@ -59,7 +59,7 @@ export default {
   },
   create_superuser(data = {}) {
     const { email, username, password } = data
-    const passwordHashed = hashPassword(password)
+    const passwordHashed = passwordHelper.Hashed(password)
 
     return new User({
       email: email,
