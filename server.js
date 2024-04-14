@@ -7,8 +7,7 @@ import { connect } from "mongoose"
 
 import appConfig from "./app.config.js"
 
-import auth from "./app/routes/Auth.js"
-
+import auth from "./app/routes/auth.js"
 const app = express()
 const upload = multer()
 
@@ -23,14 +22,7 @@ app.use(bodyParser.json())
 
 // cookie
 app.use(
-  cookieSession({
-    // session
-    // name: "session",
-    keys: appConfig.secret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // Set to true for https
-  })
+  cookieSession(appConfig.cookieSession)
 )
 
 // upload
