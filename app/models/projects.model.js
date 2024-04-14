@@ -3,11 +3,11 @@ import { Schema, model } from "mongoose"
 const projectSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
-    ref: "users"
+    ref: "users",
   },
   project_name: {
     type: String,
-    required: true
+    required: true,
   },
   category: {
     type: Schema.Types.ObjectId,
@@ -16,14 +16,14 @@ const projectSchema = new Schema({
   description: String,
   status: String,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
   // (Additional fields as needed)
 })
 
 const Project = model("projects", projectSchema)
 
 module.exports = {
-    create(data = {}){
-        return new Project(data);
-    }
+  create(data = {}) {
+    return new Project(data).save()
+  },
 }

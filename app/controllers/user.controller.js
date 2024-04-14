@@ -1,11 +1,11 @@
-import Users from "../models/Users.js"
+import userModel from "../models/users.model.js"
 
-class UserController {
+export default {
   async usersRegister(req, res, next) {
     const { username, password, email } = req.body
 
-    const existingUser = await Users.findOne({
-      $or: [{ username }, { email }]
+    const existingUser = await userModel.findOne({
+      $or: [{ username }, { email }],
     })
 
     if (existingUser) {
@@ -16,9 +16,7 @@ class UserController {
       return res.status(400).json({ errors })
     }
 
-    await Users.create_user({ username, password, email })
+    await userModel.create_user({ username, password, email })
     res.status(201).json({ message: "Registration successful" })
-  }
+  },
 }
-
-export default new UserController()

@@ -11,4 +11,4 @@ const categorySchema = new Schema({
 
 const Category = model("category", categorySchema)
 
-module.exports = {}
+export default {}

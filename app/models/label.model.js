@@ -3,12 +3,12 @@ import { Schema, model } from "mongoose"
 const labelSchema = new Schema({
   label_name: {
     type: String,
-    required: true
+    required: true,
   },
-  description: String
+  description: String,
   // (Additional fields as needed)
 })
 
 const Label = model("label", labelSchema)
 
-module.exports = {}
+export default {}

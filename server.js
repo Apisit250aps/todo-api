@@ -7,7 +7,8 @@ import { connect } from "mongoose"
 
 import appConfig from "./app.config.js"
 
-import auth from "./app/routes/auth.js"
+import auth from "./app/routes/auth.route.js"
+
 const app = express()
 const upload = multer()
 

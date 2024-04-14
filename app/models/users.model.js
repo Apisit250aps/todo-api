@@ -37,17 +37,19 @@ const User = model("users", UserSchema)
 
 export default {
   create_user(data = {}) {
-    const { username , email, password } = data
-    
+    const { username, email, password } = data
     const passwordHashed = hashPassword(password)
+
     return new User({
       email: email,
       username: username,
       password: passwordHashed
     }).save()
   },
-  create_staff(username, password, email) {
+  create_staff(data = {}) {
+    const { email, username, password } = data
     const passwordHashed = hashPassword(password)
+
     return new User({
       email: email,
       username: username,
@@ -55,8 +57,10 @@ export default {
       is_staff: true
     }).save()
   },
-  create_superuser(username, password, email) {
+  create_superuser(data = {}) {
+    const { email, username, password } = data
     const passwordHashed = hashPassword(password)
+
     return new User({
       email: email,
       username: username,
@@ -65,13 +69,14 @@ export default {
       is_superuser: true
     }).save()
   },
-  findOne(filters) {
+  findOne(filters = {}) {
     return User.findOne(filters)
   },
   find(filters = {}) {
     return User.find(filters)
   },
   findById(id) {
+    id
     return User.findById(id)
   }
 }

@@ -22,4 +22,6 @@ const subtaskSchema = new Schema({
 
 const subTask = model("subtasks", subtaskSchema)
 
-module.exports = {}
+export default {
+  
+}

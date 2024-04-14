@@ -23,4 +23,6 @@ const taskSchema = new Schema({
 
 const Task = model("tasks", taskSchema)
 
-module.exports = {}
+export default {
+  
+}
