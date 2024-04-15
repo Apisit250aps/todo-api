@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 app.use("/auth", auth)
 
 // database
-connect(appConfig.db_url())
+await connect(appConfig.mongo)
   .then(() => {
     console.log("mongodb connected!")
   })

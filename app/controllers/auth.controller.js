@@ -3,9 +3,10 @@ import usersModel from "../models/users.model.js"
 
 export default {
   async login(req, res) {
-    const { username, password } = req.body
-
+    
     try {
+      
+      const { username, password } = req.body
       const user = await usersModel.findOne({ username })
 
       if (!user) {
