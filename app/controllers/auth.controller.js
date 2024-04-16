@@ -8,7 +8,6 @@ export default {
       
       const { username, password } = req.body
       const user = await usersModel.findOne({ username })
-
       if (!user) {
         return res.status(404).json({ message: "User not found" })
       }

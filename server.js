@@ -4,7 +4,7 @@ import multer from "multer"
 import cookieSession from "cookie-session"
 import morgan from "morgan"
 import { connect } from "mongoose"
-
+import cors from 'cors'
 import appConfig from "./app.config.js"
 
 import auth from "./app/routes/auth.route.js"
@@ -25,7 +25,8 @@ app.use(bodyParser.json())
 app.use(
   cookieSession(appConfig.cookieSession)
 )
-
+// cors
+app.use(cors(appConfig.corsOptions))
 // upload
 app.use(upload.array())
 

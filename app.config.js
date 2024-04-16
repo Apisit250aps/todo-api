@@ -6,6 +6,10 @@ export default {
     // Cookie Options
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   },
-  mongo: "mongodb://localhost:27017/todo",
-  
+  corsOptions: {
+    origin: "http://localhost:5173",
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200
+  },
+  mongo: "mongodb://localhost:27017/todo"
 }
