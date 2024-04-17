@@ -1,11 +1,9 @@
-import passwordHelper from "../helpers/password.helper.js";
+import passwordHelper from "../helpers/password.helper.js"
 import usersModel from "../models/users.model.js"
 
 export default {
   async login(req, res) {
-    
     try {
-      
       const { username, password } = req.body
       const user = await usersModel.findOne({ username })
       if (!user) {
@@ -21,7 +19,7 @@ export default {
       // Set user session
       req.session.user = user
 
-      res.status(200).json({ message: "Login successful" })
+      res.status(200).json({ message: "Login successful", user: user })
     } catch (error) {
       res.status(500).json({ error: error.message })
     }
@@ -41,6 +39,7 @@ export default {
   },
 
   async authentication(req, res) {
+    console.log(req.session)
     if (req.session.user) {
       res.status(200).json({ message: "Authenticated", user: req.session.user })
     } else {

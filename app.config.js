@@ -2,9 +2,12 @@ export default {
   port: 3000,
   cookieSession: {
     name: "session",
-    keys: ["a97DZWmYwIfLOVVSboPRnjVXHEzVRbSh"],
+    keys: [
+      "a97DZWmYwIfLOVVSboPRnjVXHEzVRbSh",
+      "AwMDAsImV4cGlyZXMiOjE3MTM2NTYwODQ1MzJ9"
+    ],
     // Cookie Options
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    maxAge: 1000 * 60 * 60 * 72 //24 * 60 * 60 * 1000 // 24 hours
   },
   corsOptions: {
     origin: "http://localhost:5173",

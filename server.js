@@ -6,12 +6,12 @@ import morgan from "morgan"
 import { connect } from "mongoose"
 import cors from 'cors'
 import appConfig from "./app.config.js"
-
+import cookieParser from "cookie-parser"
 import auth from "./app/routes/auth.route.js"
 
 const app = express()
 const upload = multer()
-
+app.set('trust proxy', 1) // trust first proxy
 // request logs
 app.use(
   morgan(":method :url  :status :response-time ms - :res[content-length]")
@@ -25,6 +25,7 @@ app.use(bodyParser.json())
 app.use(
   cookieSession(appConfig.cookieSession)
 )
+app.use(cookieParser())
 // cors
 app.use(cors(appConfig.corsOptions))
 // upload
